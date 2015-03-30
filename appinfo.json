@@ -7,13 +7,20 @@
     "longName": "UmpClicker",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "images/Clicker28x28.png",
+                "menuIcon": true,
+                "name": "Clicker",
+                "type": "png"
+            }
+        ]
     },
     "sdkVersion": "2",
     "shortName": "UmpClicker",
     "uuid": "3cfc1e20-8569-417f-9c76-f0f03aa7d926",
     "versionCode": 1,
-    "versionLabel": "1.0",
+    "versionLabel": "1.11",
     "watchapp": {
         "watchface": false
     }

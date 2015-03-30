@@ -101,6 +101,37 @@ static void destroy_ui(void) {
 }
 // END AUTO-GENERATED UI CODE
 
+static void save_state() {
+	ump_LastEnd = ump_End;
+	ump_LastAway = ump_Away;
+	ump_LastOuts = ump_Outs;
+	ump_LastBalls = ump_Balls;
+	ump_LastStrikes = ump_Strikes;
+	ump_LastInnings = ump_Innings;	
+}
+
+static void restore_state() {
+	ump_End = ump_LastEnd;
+	ump_Away = ump_LastAway;
+	ump_Outs = ump_LastOuts;
+	ump_Balls = ump_LastBalls;
+	ump_Strikes = ump_LastStrikes;
+	ump_Innings = ump_LastInnings;
+	if (ump_Away) {
+		text_layer_set_text(s_HomeAway, "Away");
+	} else {
+		text_layer_set_text(s_HomeAway, "Home");
+	}
+	snprintf(ump_T_Innings, 2, "%d", ump_Innings);
+	text_layer_set_text(s_Innings, ump_T_Innings);
+	snprintf(ump_T_Outs, 2, "%d", ump_Outs);
+	text_layer_set_text(s_Outs, ump_T_Outs);
+	snprintf(ump_T_Balls, 2, "%d", ump_Balls);
+	text_layer_set_text(s_Balls, ump_T_Balls);
+	snprintf(ump_T_Strikes, 2, "%d", ump_Strikes);
+	text_layer_set_text(s_Strikes, ump_T_Strikes);
+}
+
 static void check_outs(int outs){
 	ump_Balls = 0;
 	ump_Strikes = 0;
@@ -120,7 +151,7 @@ static void check_outs(int outs){
 			text_layer_set_text(s_Innings, ump_T_Innings);
 			if (ump_Innings > MAX_INNINGS){
 				ump_End = true;
-				text_layer_set_text(s_HomeAway, "TIE");
+				text_layer_set_text(s_HomeAway, "TIE?");
 			}
 		}
 	}
@@ -129,6 +160,7 @@ static void check_outs(int outs){
 
 static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
 	if (!ump_End){
+		save_state();
 		ump_Outs++;
 		if (ump_Away){
 			text_layer_set_text(s_HomeAway, "Away");
@@ -138,19 +170,20 @@ static void select_click_handler(ClickRecognizerRef recognizer, void *context) {
 		snprintf(ump_T_Outs, 2, "%d", ump_Outs);
 		text_layer_set_text(s_Outs, ump_T_Outs);
 		check_outs(ump_Outs);
-	}
-}
-
-static void back_click_handler(ClickRecognizerRef recognizer, void *context) {
-	if (ump_End){
+	} else {
 		ump_End = false;
 		text_layer_set_text(s_HomeAway, "Away");
 		ump_Away = true;
 	}
 }
 
+static void back_click_handler(ClickRecognizerRef recognizer, void *context) {
+	restore_state();
+}
+
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 	if(!ump_End){
+		save_state();
 		if (ump_Away){
 			text_layer_set_text(s_HomeAway, "Away");
 		} else {
@@ -175,6 +208,7 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
 	if (!ump_End){
+		save_state();
 		if (ump_Away){
 			text_layer_set_text(s_HomeAway, "Away");
 		} else {
