@@ -4,6 +4,7 @@
         ""
     ],
     "companyName": "NetTek Ltd",
+    "enableMultiJS": true,
     "longName": "UmpClicker",
     "projectType": "native",
     "resources": {
@@ -12,15 +13,19 @@
                 "file": "images/Clicker28x28.png",
                 "menuIcon": true,
                 "name": "Clicker",
-                "type": "png"
+                "type": "bitmap"
             }
         ]
     },
-    "sdkVersion": "2",
+    "sdkVersion": "3",
     "shortName": "UmpClicker",
+    "targetPlatforms": [
+        "aplite",
+        "basalt",
+        "chalk"
+    ],
     "uuid": "3cfc1e20-8569-417f-9c76-f0f03aa7d926",
-    "versionCode": 1,
-    "versionLabel": "1.11",
+    "versionLabel": "1.2",
     "watchapp": {
         "watchface": false
     }

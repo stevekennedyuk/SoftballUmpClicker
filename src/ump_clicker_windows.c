@@ -19,68 +19,70 @@ static TextLayer *s_Strikes_button;
 static void initialise_ui(void) {
   s_window = window_create();
   window_set_background_color(s_window, GColorBlack);
-  window_set_fullscreen(s_window, false);
+  #ifndef PBL_SDK_3
+    window_set_fullscreen(s_window, 0);
+  #endif
   
   s_res_gothic_24_bold = fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
   s_res_gothic_28_bold = fonts_get_system_font(FONT_KEY_GOTHIC_28_BOLD);
   // s_Ball_button
-  s_Ball_button = text_layer_create(GRect(102, 5, 40, 28));
+  s_Ball_button = text_layer_create(GRect(102, 37, 40, 28));
   text_layer_set_text(s_Ball_button, "Ball");
   text_layer_set_text_alignment(s_Ball_button, GTextAlignmentCenter);
   text_layer_set_font(s_Ball_button, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Ball_button);
   
   // s_Out_button
-  s_Out_button = text_layer_create(GRect(102, 59, 40, 28));
+  s_Out_button = text_layer_create(GRect(101, 72, 40, 28));
   text_layer_set_text(s_Out_button, "Out");
   text_layer_set_text_alignment(s_Out_button, GTextAlignmentCenter);
   text_layer_set_font(s_Out_button, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Out_button);
   
   // s_HomeAway
-  s_HomeAway = text_layer_create(GRect(6, 5, 61, 34));
+  s_HomeAway = text_layer_create(GRect(12, 108, 47, 25));
   text_layer_set_text(s_HomeAway, "Away");
   text_layer_set_text_alignment(s_HomeAway, GTextAlignmentCenter);
-  text_layer_set_font(s_HomeAway, s_res_gothic_28_bold);
+  text_layer_set_font(s_HomeAway, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_HomeAway);
   
   // s_Innings_const
-  s_Innings_const = text_layer_create(GRect(6, 53, 26, 34));
+  s_Innings_const = text_layer_create(GRect(5, 53, 26, 34));
   text_layer_set_text(s_Innings_const, "In:");
   text_layer_set_text_alignment(s_Innings_const, GTextAlignmentCenter);
   text_layer_set_font(s_Innings_const, s_res_gothic_28_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Innings_const);
   
   // s_Innings
-  s_Innings = text_layer_create(GRect(34, 53, 29, 34));
+  s_Innings = text_layer_create(GRect(35, 54, 29, 34));
   text_layer_set_text(s_Innings, "1");
   text_layer_set_text_alignment(s_Innings, GTextAlignmentCenter);
   text_layer_set_font(s_Innings, s_res_gothic_28_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Innings);
   
   // s_Balls
-  s_Balls = text_layer_create(GRect(72, 5, 26, 28));
+  s_Balls = text_layer_create(GRect(69, 37, 29, 28));
   text_layer_set_text(s_Balls, "0");
   text_layer_set_text_alignment(s_Balls, GTextAlignmentCenter);
   text_layer_set_font(s_Balls, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Balls);
   
   // s_Outs
-  s_Outs = text_layer_create(GRect(69, 59, 29, 28));
+  s_Outs = text_layer_create(GRect(69, 72, 29, 28));
   text_layer_set_text(s_Outs, "0");
   text_layer_set_text_alignment(s_Outs, GTextAlignmentCenter);
   text_layer_set_font(s_Outs, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Outs);
   
   // s_Strikes
-  s_Strikes = text_layer_create(GRect(62, 117, 29, 28));
+  s_Strikes = text_layer_create(GRect(62, 108, 29, 28));
   text_layer_set_text(s_Strikes, "0");
   text_layer_set_text_alignment(s_Strikes, GTextAlignmentCenter);
   text_layer_set_font(s_Strikes, s_res_gothic_24_bold);
   layer_add_child(window_get_root_layer(s_window), (Layer *)s_Strikes);
   
   // s_Strikes_button
-  s_Strikes_button = text_layer_create(GRect(94, 117, 47, 28));
+  s_Strikes_button = text_layer_create(GRect(94, 108, 47, 28));
   text_layer_set_text(s_Strikes_button, "Strike");
   text_layer_set_text_alignment(s_Strikes_button, GTextAlignmentCenter);
   text_layer_set_font(s_Strikes_button, s_res_gothic_24_bold);
